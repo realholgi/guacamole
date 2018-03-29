@@ -5,12 +5,6 @@
 # Get the required script arguments for non-interactive mode
 while [ "$1" != "" ]; do
     case $1 in
-        -m | --mysqlpwd )       shift
-                                argmysqlpwd="$1" # base64 encoded, MySQL root password
-                                ;;
-        -g | --guacpwd )        shift
-                                argguacpwd="$1"  # base64 encoded, Guacamole_user database password
-                                ;;
         -f | --fqdn )           shift
                                 argfqdn="$1"
                                 ;;
@@ -20,15 +14,13 @@ while [ "$1" != "" ]; do
     shift
 done
 
-if [ -n "$argmysqlpwd" ] && [ -n "$argguacpwd" ] && [ -n "$argfqdn" ] && [ -n "$argemail" ]; then
-        mysqlrootpassword=$argmysqlpwd
-        guacdbuserpassword=$argguacpwd
+if [ -n "$argfqdn" ] && [ -n "$argemail" ]; then
         certbotfqdn=$argfqdn
         certbotemail=$argemail
 else
-  echo "Error: You must provide the following script arguments: --mysqlpwd --guacpwd --fqdn --email"
+  echo "Error: You must provide the following script arguments: --fqdn --email"
   exit 1
 fi
 
 ./nginx-install.sh --fqdn $certbotfqdn --email $certbotemail                   # Install Nginx
-./guac-install.sh --mysqlpwd $mysqlrootpassword --guacpwd $guacdbuserpassword  # Install Guacamole
+./guac-install.sh                                                              # Install Guacamole

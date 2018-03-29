@@ -26,8 +26,6 @@ In order to deploy this Azure Resource Manager template you will need provide th
 | **Vnet Name**              | Name of an existing Virtual Network.|
 | **Vnet RG**                | Name of the Resource Group where your Virtual Network resides.|
 | **Subnet Name**            | Name of an existing Subnet within your Virtual Network.|
-| **Mysql Root Pwd**         | MySQL root password.|
- **Guac DB Pwd**            | Guacamole database password.|
 | **Cert Email Address**     | Email address to be used with the generation of your Let's Encrypt SSL certificate.|
 
 ### Generate your SSH Public Key

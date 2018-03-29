@@ -58,20 +58,6 @@
                 "description": "Define the name of an existing Subnet within your Virtual Network."
             }
         },
-        "mysqlRootPwd": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Define your desired mySQL root password."
-            }
-        },
-        "guacDBPwd": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Define your desired Guacamole database password."
-            }
-        },
         "certEmailAddress": {
             "type": "string",
             "defaultValue": "",
@@ -81,21 +67,21 @@
         },        
         "scriptActionUri_entrypoint": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/bigredthelogger/guacamole/master/install.sh",
+            "defaultValue": "https://raw.githubusercontent.com/realholgi/guacamole/master/install.sh",
             "metadata": {
               "description": "A public http(s) uri that points to a script action that will install act as an entry point for nginx-install.sh and guac-install.sh."
             }
         },
         "scriptActionUri_nginx": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/bigredthelogger/guacamole/master/nginx-install.sh",
+            "defaultValue": "https://raw.githubusercontent.com/realholgi/guacamole/master/nginx-install.sh",
             "metadata": {
               "description": "A public http(s) uri that points to a script action that will install Nginx and a Let's Encrypt SSL."
             }
         }, 
         "scriptActionUri_guacamole": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/bigredthelogger/guacamole/master/guac-install.sh",
+            "defaultValue": "https://raw.githubusercontent.com/realholgi/guacamole/master/guac-install.sh",
             "metadata": {
               "description": "A public http(s) uri that points to a script action that will install Apache Guacamole."
             }
@@ -110,8 +96,6 @@
         "vmVnetName": "[trim(parameters('vmVnetName'))]",
         "vmVnetRG": "[trim(parameters('vmVnetRG'))]",
         "vmSubnetName": "[trim(parameters('vmSubnetName'))]",
-        "mysqlRootPwd": "[trim(parameters('mysqlRootPwd'))]",
-        "guacDBPwd": "[trim(parameters('guacDBPwd'))]",
         "certEmailAddress": "[trim(parameters('certEmailAddress'))]",
         "scriptActionUri_entrypoint": "[trim(parameters('scriptActionUri_entrypoint'))]",
         "scriptActionUri_nginx": "[trim(parameters('scriptActionUri_nginx'))]",
