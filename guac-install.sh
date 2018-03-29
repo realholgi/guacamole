@@ -35,13 +35,13 @@ fi
 # Install features
 apt -y install build-essential libcairo2-dev ${JPEGTURBO} ${LIBPNG} libossp-uuid-dev libavcodec-dev libavutil-dev \
 libswscale-dev libfreerdp-dev libpango1.0-dev libssh2-1-dev libtelnet-dev libvncserver-dev libpulse-dev libssl-dev \
-libvorbis-dev libwebp-dev freerdp-x11 ghostscript wget dpkg-dev curl ca-certificates
+libvorbis-dev libwebp-dev freerdp-x11 ghostscript wget dpkg-dev curl ca-certificates supervisor
 
 # Install nodeJS 6
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
 apt -y install nodejs
 
-#/usr/bin/npm install --save guacamole-lite
+npm install guacamole-lite
 
 # If apt fails to run completely the rest of this isn't going to work...
 if [ $? -ne 0 ]; then
@@ -91,6 +91,13 @@ ln -s /usr/local/lib/freerdp/guac*.so /usr/lib/${BUILD_FOLDER}/freerdp/
 
 # Ensure guacd is started
 service guacd start
+
+# Create guac-tunnel supervisor config
+echo "[program:node]" > /etc/supervisor/conf.d/guac-tunnel.conf
+echo "command=/usr/bin/node /root/guac-tunnel.js &" >> /etc/supervisor/conf.d/guac-tunnel.conf
+
+# Ensure guac-tunnel is started
+service supervisor restart
 
 # Cleanup
 rm -rf guacamole-*
