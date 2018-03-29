@@ -261,7 +261,7 @@
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
             ],
             "tags": {
-                "displayName": "nginx/tomcat/mysql/guacamole"
+                "displayName": "nginx/guacamole"
             },
             "properties": {
                 "publisher": "Microsoft.Azure.Extensions",
@@ -272,7 +272,7 @@
                 "fileUris": [
                     "[variables('scriptActionUri_entrypoint')]", "[variables('scriptActionUri_nginx')]", "[variables('scriptActionUri_guacamole')]"
                 ],
-                "commandToExecute": "[concat('bash install.sh', ' --fqdn ', reference(variables('publicIPAddressName')).dnsSettings.fqdn, ' --email ', variables('certEmailAddress'), ' --mysqlpwd ', base64(variables('mysqlRootPwd')), ' --guacpwd ', base64(variables('guacDBPwd')))]"
+                "commandToExecute": "[concat('bash install.sh', ' --fqdn ', reference(variables('publicIPAddressName')).dnsSettings.fqdn, ' --email ', variables('certEmailAddress'))]"
               }
             }
         }
