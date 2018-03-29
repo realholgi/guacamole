@@ -55,36 +55,15 @@ The following will occur as part of the deployment to Microsoft Azure:
 * Creation of a Ubuntu 16.04 virtual machine
 * Creation of a Public IP address with your specified DNS prefix
 * Creation of a Network Security Group that allows incoming traffic on ports 22, 80, 443.
-  * Ports 8080 and 8443 are proxied via the Nginx server to Tomcat thus they are not required to be open.
-* Installation of Nginx, Tomcat, MySQL, Guacamole, and a Let's Encrypt SSL certificate
+  * Ports 8080 and 8443 are proxied via the Nginx server to Node thus they are not required to be open.
+* Installation of Nginx, Node, Guacamole-Server, and a Let's Encrypt SSL certificate
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fbigredthelogger%2Fguacamole%2Fmaster%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Frealholgi%2Fguacamole%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fbigredthelogger%2Fguacamole%2Fmaster%2Fazuredeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Frealholgi%2Fguacamole%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
-
-### Login to Guacamole and change your password
-
-The default username and password is **guacadmin**/**guacadmin**. Make sure that you login and change this.
-
-### Customization
-
-If you would like to customize this template to meet your own specific business requirments, you can do so very simply. 
-
-* Make a copy of the entry point script <a href="https://raw.githubusercontent.com/bigredthelogger/guacamole/master/install.sh">install.sh</a>.
-  * Make your desired changes
-  * Upload your new script to a publicly available location (e.g. Github) or your Azure Storage Account
-  * Override the **scriptActionUri_entrypoint** parameter with the URL to your customized entry point script.
-* Make a copy of the Nginx install script <a href="https://raw.githubusercontent.com/bigredthelogger/guacamole/master/nginx-install.sh">nginx-install.sh</a>.
-  * Make your desired changes
-  * Upload your new script to a publicly available location (e.g. Github) or your Azure Storage Account
-  * Override the **scriptActionUri_nginx** parameter with the URL to your customized Nginx script.
-* Make a copy of the Guacamole install script <a href="https://raw.githubusercontent.com/bigredthelogger/guacamole/master/guac-install.sh">guac-install.sh</a>.
-  * Make your desired changes
-  * Upload your new script to a publicly available location (e.g. Github) or your Azure Storage Account
-  * Override the **scriptActionUri_guacamole** parameter with the URL to your customized Guacamole install script.
 
 ## Lessons Learned
 
