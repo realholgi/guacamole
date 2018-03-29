@@ -35,8 +35,13 @@ fi
 # Install features
 apt -y install build-essential libcairo2-dev ${JPEGTURBO} ${LIBPNG} libossp-uuid-dev libavcodec-dev libavutil-dev \
 libswscale-dev libfreerdp-dev libpango1.0-dev libssh2-1-dev libtelnet-dev libvncserver-dev libpulse-dev libssl-dev \
-libvorbis-dev libwebp-dev freerdp-x11 \
-ghostscript wget dpkg-dev
+libvorbis-dev libwebp-dev freerdp-x11 ghostscript wget dpkg-dev curl ca-certificates
+
+# Install nodeJS 6
+curl -sL https://deb.nodesource.com/setup_6.x | bash -
+apt -y install nodejs
+
+#/usr/bin/npm install --save guacamole-lite
 
 # If apt fails to run completely the rest of this isn't going to work...
 if [ $? -ne 0 ]; then
@@ -55,13 +60,12 @@ if [ $? -ne 0 ]; then
     exit
 fi
 
-# Download Guacamole Client
-#wget -O guacamole-${GUACVERSION}.war ${SERVER}/binary/guacamole-${GUACVERSION}.war
-#if [ $? -ne 0 ]; then
-#    echo "Failed to download guacamole-${GUACVERSION}.war"
-#    echo "${SERVER}/binary/guacamole-${GUACVERSION}.war"
-#    exit
-#fi
+# Download Guacamole Tunnel
+wget -O /usr/local/bin/guac-tunnel.js https://raw.githubusercontent.com/realholgi/guacamole/master/guac-tunnel.js
+if [ $? -ne 0 ]; then
+    echo "Failed to download guac-tunnel.js"
+    exit
+fi
 
 # Extract Guacamole files
 tar -xzf guacamole-server-${GUACVERSION}.tar.gz
