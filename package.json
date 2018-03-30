@@ -1,0 +1,14 @@
+{
+  "name": "guac-tunnel",
+  "version": "0.1.0",
+  "description": "This is a remote desktop tunnel / web client.",
+  "main": "guac-tunnel.js",
+  "author": "Holger Eiboeck",
+  "license": "MIT",
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "guacamole-common-js": "^0.9.14",
+    "guacamole-lite": "^0.4.4"
+  },
+  "devDependencies": {}
+}

@@ -62,7 +62,7 @@ echo "    listen [::]:80 default_server;" >> /etc/nginx/sites-available/default
 echo "    root /var/www/html;" >> /etc/nginx/sites-available/default
 echo "    index index.html index.htm index.nginx-debian.html;" >> /etc/nginx/sites-available/default
 echo "    server_name $certbotfqdn;" >> /etc/nginx/sites-available/default
-echo "    location / {" >> /etc/nginx/sites-available/default
+echo "    location /ws/ {" >> /etc/nginx/sites-available/default
 echo "        proxy_pass http://localhost:8080/guacamole/;" >> /etc/nginx/sites-available/default
 echo "        proxy_buffering off;" >> /etc/nginx/sites-available/default
 echo "        proxy_http_version 1.1;" >> /etc/nginx/sites-available/default

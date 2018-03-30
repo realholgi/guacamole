@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const GuacamoleLite = require('guacamole-lite');
+var cluster = require('cluster');
 
 const websocketOptions = {
     port: 8080 // we will accept connections to this port
@@ -23,5 +24,10 @@ const clientOptions = {
         ]
     }
 };
-
-const guacServer = new GuacamoleLite(websocketOptions, guacdOptions, clientOptions);
+if (cluster.isMaster) {
+    for (var i = 0; i < 20; i++) {
+        cluster.fork();
+    }
+} else {
+    const guacServer = new GuacamoleLite(websocketOptions, guacdOptions, clientOptions);
+}
