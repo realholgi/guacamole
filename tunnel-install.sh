@@ -36,3 +36,7 @@ echo "command=/usr/bin/node /root/guacamole-master/guac-tunnel.js &" >> /etc/sup
 # Ensure guac-tunnel is started
 service supervisor restart
 
+# make guacamole-common.*.js accessible
+mkdir /var/www/html/js
+mkdir /var/www/html/css
+cp node_modules/guacamole-common-js/dist/*.js /var/www/html/js
