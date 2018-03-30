@@ -35,11 +35,7 @@ fi
 # Install features
 apt -y install build-essential libcairo2-dev ${JPEGTURBO} ${LIBPNG} libossp-uuid-dev libavcodec-dev libavutil-dev \
 libswscale-dev libfreerdp-dev libpango1.0-dev libssh2-1-dev libtelnet-dev libvncserver-dev libpulse-dev libssl-dev \
-libvorbis-dev libwebp-dev freerdp-x11 ghostscript wget dpkg-dev curl ca-certificates supervisor
-
-# Install nodeJS 6
-curl -sL https://deb.nodesource.com/setup_8.x | bash -
-apt -y install nodejs
+libvorbis-dev libwebp-dev freerdp-x11 ghostscript wget dpkg-dev
 
 # If apt fails to run completely the rest of this isn't going to work...
 if [ $? -ne 0 ]; then
@@ -55,13 +51,6 @@ wget -O guacamole-server-${GUACVERSION}.tar.gz ${SERVER}/source/guacamole-server
 if [ $? -ne 0 ]; then
     echo "Failed to download guacamole-server-${GUACVERSION}.tar.gz"
     echo "${SERVER}/source/guacamole-server-${GUACVERSION}.tar.gz"
-    exit
-fi
-
-# Download Guacamole Tunnel
-wget -O /root/guacamole-tunnel.tar.gz https://github.com/realholgi/guacamole/archive/master.tar.gz
-if [ $? -ne 0 ]; then
-    echo "Failed to download guacamole-tunnel.tar.gz"
     exit
 fi
 
@@ -90,20 +79,8 @@ ln -s /usr/local/lib/freerdp/guac*.so /usr/lib/${BUILD_FOLDER}/freerdp/
 # Ensure guacd is started
 service guacd start
 
-# Extract Guacamole Tunnel files
-cd /root
-tar -xzf guacamole-tunnel.tar.gz
-cd guacamole-tunnel
-npm install
-
-# Create guac-tunnel supervisor config
-echo "[program:node]" > /etc/supervisor/conf.d/guac-tunnel.conf
-echo "command=/usr/bin/node /root/guacamole-tunnel/guac-tunnel.js &" >> /etc/supervisor/conf.d/guac-tunnel.conf
-
 # Ensure guac-tunnel is started
 service supervisor restart
 
 # Cleanup
 rm -rf guacamole-*
-
-echo -e "Installation Complete\nhttp://localhost:8080/\n"

@@ -24,3 +24,6 @@ fi
 
 ./nginx-install.sh --fqdn $certbotfqdn --email $certbotemail                   # Install Nginx
 ./guac-install.sh                                                              # Install Guacamole
+./tunnel-install.sh                                                            # Install Tunnel
+
+echo -e "Installation Complete\nhttps://"$certbotfqdn"/\n"
