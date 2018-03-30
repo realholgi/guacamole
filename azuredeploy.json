@@ -85,6 +85,13 @@
             "metadata": {
               "description": "A public http(s) uri that points to a script action that will install Apache Guacamole."
             }
+        },
+        "scriptActionUri_tunnel": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/realholgi/guacamole/master/tunnel-install.sh",
+            "metadata": {
+              "description": "A public http(s) uri that points to a script action that will install Guacamole Tunnel"
+            }
         }
     },
     "variables": {
@@ -100,6 +107,7 @@
         "scriptActionUri_entrypoint": "[trim(parameters('scriptActionUri_entrypoint'))]",
         "scriptActionUri_nginx": "[trim(parameters('scriptActionUri_nginx'))]",
         "scriptActionUri_guacamole": "[trim(parameters('scriptActionUri_guacamole'))]",
+        "scriptActionUri_tunnel": "[trim(parameters('scriptActionUri_tunnel'))]",
         "vnetID": "[resourceId(variables('vmVnetRG'), 'Microsoft.Network/virtualNetworks', variables('vmVnetName'))]",
         "subnetRef": "[concat(variables('vnetID'),'/subnets/', variables('vmSubnetName'))]",
         "osImageSku": "16.04-LTS",
@@ -270,7 +278,7 @@
                 "autoUpgradeMinorVersion": false,
               "settings": {
                 "fileUris": [
-                    "[variables('scriptActionUri_entrypoint')]", "[variables('scriptActionUri_nginx')]", "[variables('scriptActionUri_guacamole')]"
+                    "[variables('scriptActionUri_entrypoint')]", "[variables('scriptActionUri_nginx')]", "[variables('scriptActionUri_guacamole')]", "[variables('scriptActionUri_tunnel')]"
                 ],
                 "commandToExecute": "[concat('bash install.sh', ' --fqdn ', reference(variables('publicIPAddressName')).dnsSettings.fqdn, ' --email ', variables('certEmailAddress'))]"
               }
